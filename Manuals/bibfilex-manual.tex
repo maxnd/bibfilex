@@ -1,0 +1,950 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{pxfonts}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{microtype} 
+\frenchspacing
+\usepackage[top=2cm, right=2cm, left=2cm, bottom=2.5cm]{geometry}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\setlist{nolistsep}
+\usepackage[backref=false]{hyperref}
+\hypersetup{hidelinks}
+\usepackage{booktabs}
+\title{\textbf{{\Huge Bibfilex}}\\
+A free bibliographic manager\vspace{20pt}%
+\\User manual}
+\author{Copyright Massimo Nardello\\Modena (Italy), 2013--2016}
+\date{Version 1.2.8}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+
+Permission is granted to copy, distribute and/or modify this document under the terms of
+the GNU Free Documentation License, Version 1.3 or any later version published by the Free
+Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+Texts. A copy of the license is available in http://www.gnu.org/licenses/fdl.html.
+
+\chapter*{Introduction}
+
+Bibfilex is a free bibliographic manager for GNU/Linux, Windows and OS X. It's useful to create and to manage archives of bibliographical items (books, articles, etc.) with possible attachments of any kind according to Biblatex structure and rules, but it can be used also with a wordprocessor like Writer or Word.
+
+Biblatex is a package of LaTeX which implements its bibliographic facilities in conjunction with Bibtex or Biber packages. This manual in the last chapter offers few information about how to catalog items according to Biblatex rules; anyway, to learn more about this, download the official manual from http://mirrors.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf. On the Internet there are many other guides on the same matter.
+
+Bibfilex is far less advanced than other bibliographic managers, like JabRef or KBibTex, and allows only few customizations. Its strength is speed and lightness, especially when used with many items: since it's a compiled software, no run-time framework is needed, like Java Virtual Machine or .Net framework, and data are stored in a fast database.
+
+Bibfilex may create and manage files which are catalogs of many items -- also thousands of them. A file of Bibfilex is a database of SQLite (www.sqlite.org), a popular software whose data can be easily read and exported through different tools available on the Internet. In a Bibfilex file data are not stored in a plain text file according to Biblatex format, so it cannot be referenced as bibliographic file within a LaTeX document. Anyway, Bibfilex may export automatically or with a one--click functionality all or part of the content of an archive in a plain text file in Biblatex format; this one can be read directly with JabRef, or be referenced in a LaTeX document. At the same time, Bibfilex may import directly a JabRef database or any other Biblatex file.
+
+Bibfilex introduces few changes in the position of some fields when compared to the official manual of Biblatex. In the list of the required fields have been added some others which sometimes are requested in the humanistic field -- like “publisher”, “location”, etc. In this way, all the fields which are more frequently compiled are show all together in the “Main fields” section of the interface.
+
+The main features of the software are:
+\begin{itemize}
+\item store the items according to each one of the entry types described in the Biblatex manual (book, article, etc.);
+\item import the content of a file in Biblatex format like a JabRef database, a BibTex file exported from Mendeley or downloaded from Google Books;
+\item export data in a Biblatex file;
+\item import and export data from a Bibfilex file to another along with possible attachments;
+\item filter the items on a single field;
+\item filter the items by keywords;
+\item filter the items on three fields or less, or modify manually the SQL statement of the filter to work on more fields or to make it more suitable or complex;
+\item filter the items by the BibTex keys contained in a LaTeX document within a \textbackslash \texttt{cite\{\}} command or the like;
+\item replace the citation commands (\textbackslash \texttt{cite}, etc.) and \textbackslash \texttt{printbibliography} command in a LaTeX document with extended citations and bibliography, which are composed according to a user defined pattern, and convert the resulting file in other formats with Pandoc (\url{http://johnmacfarlane.net/pandoc});
+\item associate various attachments (files of every kind) to each item; the attachments are zipped and stored in a directory with the same name and path of the Bibfilex file in use, and automatically managed by the software; the number of attachments is limited only by the available disk space;
+\item activate auto completion of data in each field with “Ctrl + Space” or “Ctrl + Shift + Space”;
+\item compose the citation of one or more items according to a user defined pattern, and copy them in the clipboard in LaTeX or HTML format; in the last case, the citation may be pasted in a word processor like Writer or Word maintaining font formatting (italic, small caps, etc.);
+\item create automatically unique BibTex keys according to a pattern defined by the user in an item, in the filtered items of in all the items of the file in use;
+\item store a specific keyword in a buffer and insert or remove it easily within the selected item with a shortcut;
+\item specify the fields (columns) shown in the grid view of the data;
+\item insert easily special characters and keywords with a dedicated form;
+\item go easily to a specified item with bookmarks;
+\item copy in the current item the content of some fields of another item referenced by the crossref field;
+\item check for double items in the file in use.
+
+\end{itemize}
+
+Bibfilex has been developed with Lazarus (\url{www.lazarus.freepascal.org}). \\
+
+\textit{Bibfilex is free software and is released under the GPL license version 3} (www.gnu.org/licenses/gpl-3.0.txt).
+
+\chapter{Basic elements}
+
+\section{The main form}
+
+The main form of Bibfilex is divided in three areas: 
+\begin{itemize}
+  \item the \textit{read only grid} on the left, in which are shown the items contained in the file in use; the visible columns may be changed in the options of the software (see “Tools -- Options\dots” menu item);
+  \item the \textit{search area} on the top, where it's possible to filter items on a single field (“Smart filter” box), or by keyword (“Filter keywords” box), or to move within the items (green arrows on the right);
+  \item the \textit{compilation area}, where it is possible to specify the item type (“Entry types”), add, show or delete attachments (“Attachments”) or compile the fields related with the selected type (“Main fields”, “Optional fields 1”, “Optional fields 2”, “Optional fields 3”, “Abstract” and “Review” tabs).
+\end{itemize}
+
+The 6 icons replicate few menu functionalities: “File -- New”, “File -- Open”, “Items -- Save”, “Items -- New”, “Items -- Standard filter\dots” and “File --  Create Biblatex file”. With the shortcuts “Ctrl + 1”, “Ctrl + 2”, “Ctrl + 3”, “Ctrl + 4”, “Ctrl + 5” and “Ctrl + 6” it is possible to select one of the 6 tabs in the compilation area. The usual shortcuts “Ctrl + C”, “Ctrl + V” and “Ctrl + X” works as usual to copy, paste and delete the selected text.
+
+F12 allows to focus the field of the smart filter (see below).
+
+When the items grid, the “Abstract” field or the “Review” field are not focused, it is possible to move to the first, to the previous, to the next and to the last item with “Ctrl + Home”, “Ctrl + PgUp”, “Ctrl + PgDn” and “Ctrl + End”.
+
+To set a bookmark to the current item, use the shortcut “Ctrl” + “Shift” + “0” to “9” (so 10 bookmarks are available). To go to a bookmark, use the shortcut “Ctrl” + “Alt” + “0” to “9”. The bookmark list is cleaned when the file in use is closed.
+
+The grids in the compilation area works like the one of a spreadsheet. To change the value of a field, select it and press “Return” or “F2” twice, or click twice on the field when it's already selected. To change the whole content of a field, just select it and begin to type.
+
+Other shortcuts are indicated in the corresponding menu items.\footnote{~In the MacOS version of Bibfilex, the menu shortcuts containing the “Ctrl” key must be activated using the “Cmd” button instead of “Ctrl”. For example, to save the current item the shortcut is “Cmd” + “S” instead of “Ctrl” + “S”.}
+
+\section{General guidelines}
+
+The width of the columns of the items grid is sized automatically, according to the data shown in the visible rows. Scrolling the items, the data for each column may be wider than the column and so not shown completely. To resize automatically the width of the columns, click on the button “Autosize” at the bottom of the grid. If an items has one or more attachments, its ID value is shown in bold in the grid.
+
+Under the grid there is a checkbox called “Select more rows”. Checking it, it is possible to select more items at a time in the same grid in order to delete them or to copy their BibTex keys or citations in the clipboard. To select more rows, “Ctrl + click” on each one of them, or use the arrow keys up and down while holding down the “Shift” button.
+
+With a double click on the items grid the same field selected in the grid will be focused in the compilation area, if it is actually used by the current entry type.
+
+The “Smart filter” allows to filter the items using a condition on a single field. If the selected field is “Author”, then the filter will select all the items in which the specified field \textit{contains} the text typed by the user, followed by “Return”; the filter is case insensitive. If the selected field is IDItems, then the following syntax is possible:
+
+\begin{itemize}
+\item type one number to select only the item whose IDItems field is equal to that number;
+\item type two numbers separated by a dash (e.g. 1000-2000) to select all the items whose IDItems field are equal or more than the first number, and equal or less than the second;
+\item type a number preceded by the “<” character (e.g. <2000) to select all the items whose IDItems field is equal or less than the number;
+\item type an ID number preceded by “>” character (e.g. >2000) to select all the items whose IDItems field is equal or more then the number;
+\end{itemize}
+
+If the selected field is neither “Author” nor “IDItems”, then the filter will select all the items in which the specified field \textit{begins with} the text typed by the user, followed by “Return”; the filter is case insensitive. The selected field will be remembered by the software.
+
+When compiling a field, it is possible to activate the auto completion: press “Ctrl + Space” or “Ctrl + Shift + Space” to have the typed text completed with the most similar value of the same field already present in the file in use. The “Crossref” field will be completed with the BibTex keys of all the items of the file in use.
+
+The “Keywords” field may be filled with different keywords; they must separated by a comma and a space, so that the software may distinguish each of them. The auto completion in this field should be activated only at the end of it, in order to work properly. Each new keyword will be suggested with a space and a comma at the end of it; the last space and comma may be removed by the user, or will be removed by the software when the item will be saved. 
+
+To filter items by keyword, just type one or more of them in the “Filter keywords” box and press “Return”. Also in this box auto completion can be activated with “Ctrl + Space” or “Ctrl + Shift + Space”. The typed keywords may be saved in the drop down list of this field or removed from it with the buttons “Add” and “Remove”. To filter items using a saved keyword, just select it in the drop down list. The list of the keywords is remembered by the software.
+
+In the compilation area, below the “Entry type” box, it's available a check box with the label “Owned” useful to mark the current item as owned by the user. The content of this field will not be exported in Biblatex file, since it's not a standard field.
+
+Still below there is a label showing the date and the time of the last change made to the current item. It is filled with the value of the “timestamp” Biblatex field, which is compiled automatically by the software. If this field is empty, for instance because an item has been imported from another software, nothing will be shown.
+
+Just over the fields grid are shown the author and the title of the current item, separated by a slash, to help the user to remember which is the current item. If the author or the title fields contain a LaTex formatting command, like \texttt{\textbackslash emph{}}, they will not be shown in this label.
+
+In order to avoid unwanted changes of the bibtex keys, the “Bibtexkey” field is read only (it cannot be modified directly) and has a gray background. Its content can be changed only with the menu items “Create BibTex key” and “Modify BibTex key” (see below for more information).
+
+The “Abstract” and “Review” fields have a slightly bigger font than the other fields to make them readable more easily. Furthermore, their font size may be increased or decreased with “Ctrl + +” (plus character) and “Ctrl + -” (less character), or with the mouse wheel while holding the “Ctrl” button. The name of their tabs is preceded by a bullet if there is some text within them. Furthermore, with “Ctrl + Shift + H” it's possible to clear the content of both these fields of all the single carriage returns, that is of all the line breakings that are not empty lines. This is useful when it's pasted within these fields some text from a pdf or other source that turns out to be many single lines ending with a carriage return. To have a normally formatted text, just add empty lines where the paragraphs should be divided and then use this shortcut to remove the exceeding carriage returns.
+
+It's possibile to insert the bibtex key of the current item within the \textbackslash \texttt{cite} command in the “Abstract” and “Review” fields with the shortcut “Ctrl + Shift + Q”. This option is useful to add easily the reference of a quote typed in these fields. If the bibtex key will be changed, the software will update also the possible key containted in these fields.
+
+A right click of the mouse on the items grid, on the compilation area or on the attachment list will show a pop up menu with some menu items commonly used. The pop up menu item “Open link” is enabled only when in the compilation area a field is actually selected and contains an internet address (that is, it begins with “http”); this menu item allows to open the address in the default browser. 
+
+With the "Copyright" menu (the last one, identified by a question mark) it is possible to show this user manual in pdf format and the copyright along with the version of the software in use.
+
+\section{Attachments}
+
+It is possible to attach many files to a single item dragging them on the form of the software (also more files at a time) or using the menu item “Items -- Attachments -- New\dots”. The attachments are stored in zip format within a directory with the same name and path of the Bibfilex file in use. This means that if this file is copied or moved from one location to another, it is necessary to copy in the same location also the directory with the same name, if it is present (namely, if there are attachments).
+
+The attachments directory is completely managed by the software: it is created when the first attachment is loaded, and it is deleted when the last attachment is deleted. The name of every zipped attachment is made by some numbers (the ID identifier of the item) and the original name of the attached file; so it is possible to enter the attachment directory, search for a specific file, unzip it and view it or load it somewhere else.
+
+Since attachments are not stored within the database but in an external directory, their number and size are limited only by the available disk space. The attachments of a single item could not have the same name, but different items may have attachments with the same name.
+
+\chapter{Menu items}
+
+\section{File}
+
+\paragraph{New} Create a new file of Bibfilex.
+
+\paragraph{Open} Open a file of Bibfilex.
+
+\paragraph{Close} Close the Bibfilex file in use.
+
+\paragraph{Copy as\dots} Copy the file in use along with its possible attachments directory with another name.
+
+\paragraph{Create Biblatex file} Export the whole content of the file in use in a Biblatex file with the same name and the .bib extension, and contained in the same directory; no confirmation is requested. Even if a filter is applied, all the data will be exported anyway. Possible attachments will not be exported. The aim of this functionality is to update easily the Biblatex file which is referenced in LaTeX documents as bibliographic file. In the “Options” of Bibfilex it is possible to specify to create automatically an updated Biblatex file just before quitting the software. This will happen only if some changes have been made. The format of the Biblatex file is the same of the one produced by the following feature. The authors that have no comma inside it (because they do not have a name and a family name, like institutional authors, etc.) will be exported between two curly brackets. If they are more than one, each of them will be exported within two curly brakets. It's not possibile to mix institutional and personal authors in the same field.
+
+\paragraph{Export to Biblatex\dots} Export the items in a Biblatex file specified by the user. If a filter is applied, only the filtered data will be exported. Possible attachments will be exported within a folder with the same name and location of the Biblatex file, and they will be referenced in the “file” fields. These fields will we composed properly to be recognized and opened in JabRef. To avoid to create a Biblatex file with an attachment directory that overlaps the one of an existing Bibfilex file, it's not possible to give the Biblatex file the name of an existing Bibfilex file.
+
+\noindent The file is imported properly also in Zotero, except for the attachments. To import the abstracts as “Notes”, activate the option “Export abstract as review” in the “Options” of the software. 
+
+\paragraph{Import from Biblatex\dots} Import in the file in use a Biblatex file, like a database of JabRef or a file exported by Bibfilex. More files may be selected and imported at a time: just “Ctrl + click” on each one of them. In the file to be imported the fields must be included only between single curly brackets, not double (at least, the dates fields). Escaped LaTex characters, also in uppercase, (e.g. \textbackslash \texttt{`\{a\}} for \texttt{à}, etc.) will be converted in the corresponding printed ones. BibTex keys of the imported items will be possibly changed if they are already present in the file in use, to avoid duplicate entries. Bibfilex will try to import possible attachments referenced in the “file” field. Best results will be obtained if this field is compiled in the JabRef way.
+
+\paragraph{Export to Bibfilex\dots} Export in an existing Bibfilex file the content of the Bibfilex file in use along with possibile atachments. If a filter is active, only the filtered items will be exported.
+
+\paragraph{Import from Bibfilex\dots} Import in the file in use all the items of another Bibfilex file along with possible attachments.
+
+\paragraph{Names of the last four files opened} Open the corresponding file.
+
+\paragraph{Exit} Quit the software.
+
+\section{Items}
+
+\paragraph{New} Create a new item and set its type as “book”; obviously, this type may be modified by the user, also after data input.
+
+\paragraph{Save} Save all changes made to current item.
+
+\paragraph{Delete} Delete the current item or the selected items and all their possible attachments.
+
+\paragraph{Undo changes} Cancel all changes made to the current item.
+
+\paragraph{Attachments} It has four options:
+
+\subparagraph{New} Attach a file to the current item; the name will be shown in the attachments list. It is possible to add attachments also dragging and dropping one or more files on the form of the software. The same function is called with a double click on the attachment list, if it is empty.
+
+\subparagraph{Open} Open the attachment selected in the attachments list, after having saved it in the \textit{temp} directory; the same can be done with a double click on the attachment name.
+
+\subparagraph{Save as} Save the attachment selected in the attachments list with its original name; only the destination directory can be chosen.
+
+\subparagraph{Delete} Delete the attachment selected in the attachments list.
+
+\paragraph{Create BibTex key} Generate a unique BibTex key according to a pattern specified in the “Options” of the software and write it in the field “BibTexKey” of the current item. If the generated key is already present in the file in use, a dash and a small letter is added at the end of it to make it unique.
+
+\paragraph{Modify BibTex key\dots} Open a box to type a new BibTex key for the current item, which will overwrite the existing one. If the key is already present in the file in use, a dash and a small letter is added at the end of it to make it unique. This is the only way to modify manually the BibTex key, since its field in the content grid is read only.
+
+\paragraph{Copy BibTex key} Copy in the clipboard the BibTex key of the current item or of the selected items along with the LaTeX command for citations (e.g. \textbackslash \texttt{cite\{KeyName\}}). If the selection of more items is disabled, the user has the possibility to type in a box the postnote (e.g. the pages) of the citation, or to confirm the empty postnote suggested by the software. Anyway, if the dialog related to the postnote is aborted with the button “Cancel” or the key “ESC”, only the BibTex key will be copied in the clipboard, without command for citation. This option is useful to get a clean key and to paste it in the crossref field of another item.
+
+\paragraph{Copy plain citation} Copy in the clipboard the fields of the current item or of the selected items formatted as a citation according to the pattern specified in the “Options”. The possible LaTeX commands contained in the pattern and useful to format the characters in italic, bold, etc. will be preserved, so the citation may be pasted in a LaTeX editor maintaining all its formatting.
+
+\paragraph{Copy formatted citation} [This menu item is visible only in GNU/Linux and Mac OS X installations] Copy in the clipboard the fields of the current item or of the selected items formatted as a citation according to the pattern specified in the “Options”. The LaTeX commands useful to format characters in italic, bold and small caps (\textbackslash \texttt{textit\{\}}, \textbackslash \texttt{emph\{\}}, \textbackslash \texttt{textbf\{\}} and \textbackslash \texttt{textsc\{\}}) will be converted to the corresponding HTML tags, so that the citation may be pasted directly in a word processor like LibreOffice Writer maintaining all its characteristics. Anyway, it cannot be pasted in a plain text editor, since it will result in an empty text. Note that small caps formatting might not work on Mac OSX.
+
+\paragraph{Update keywords list} Update the list of keywords used in the current file and useful for auto completion on keywords; the list is created when a file is opened, but could be updated if new keywords are added. The keywords list is available in the “Keywords list” form, shown with the menu item “Tools - Keywords list\dots” (see below).
+
+\paragraph{Rename keyword\dots} Rename a keyword in all the items of the file in use. The user must type the old keyword to be replaced and then the new one; if the latter is empty, the old password is simply removed from all the items. The search for the old password is case insensitive.
+
+\paragraph{Store keyword\dots} Give the user the possibility to type a keyword (or more than one separated by a comma and a space) and store it in a buffer. The keyword could then be inserted in an item with the following functionality. When this menu item is activated, the possible existing keyword is shown, and may be changed or deleted in order to clear the buffer. Tha value of the buffer is remembered by the software.
+
+\paragraph{Add or remove keyword} Add to the current item the keyword(s) saved in the buffer with the previous functionality, or removes it if it's already present. If there's no keyword in the buffer, this functionality does nothing. It's useful to add or remove very easily a keyword or more keywords in a single item.
+
+\paragraph{Filter from LaTeX file\dots} Filter the items whose BibTex key is contained in a LaTeX file within one of the following commands: \textbackslash \texttt{cite\{\}}, \textbackslash \texttt{textcite\{\}}, \textbackslash \texttt{parencite\{\}}, \textbackslash \texttt{smartcite\{\}}. This functionality is useful to filter the items quoted in a LaTeX document in order to export them in a Biblatex file, to be stored with the document or pasted within it.
+
+\paragraph{Standard filter\dots } Open the “Standard filter” form (see below chapter “Standard filter form”).
+
+\paragraph{Remove filter} Removes a filter on the items, showing all of them. All kind of filters are removed.
+
+\paragraph{Copy from crossref} Copy in the current item the content of some fields of another item, whose bibtex key is written in the “Crossref” field. The search of the bibtex key is case insensitive. The nexus among the current item fields and the referenced ones follows the rules of the manual of Biblatex, with some adjustments.
+
+\paragraph{Order} It has seven options useful to sort the items on one or more fields. The options are “ID Item” (sort only on “IDItem”), “Author” (sort on “author” and “title”), “Title” (sort on “title” and “author”), “Journal title” (sort on “journaltitle” and “author”), Book title (sort on “booktitle” and “author”), “Year” (sort on “year”, “author” and “title”) and “Change date” (sort on “timestamp”, “author” and “title”). The choice is remembered by the software. If the field is “ID Item” when a file is opened, then the last record will be selected.
+
+\section{Tools}
+
+\paragraph{Options\dots} Open the “Option” form (see below chapter “Options”).
+
+\paragraph{Stop list\dots} Open the “Stop list” form, useful to specify a series of words (like articles, etc.) that should not be included in a BibTex key when it is automatically generated (see below chapter “Stop list”).
+
+\paragraph{Special characters\dots  } Open the “Special characters” form, useful to insert a special character in a field which is in editing, or in the “Smart filter” box or in the “Filter keywords” box. Move with the arrow keys on the desired character and press “Return” o double click on it to insert it in the field. Use “Esc” the close the form without doing anything.
+
+\paragraph{Keywords list\dots  } Open the “Keywords list” form, useful to insert one of the keywords already present in the file in use within the “Keywords” field which is in editing. Move with the arrow keys on the desired keyword, or search for it typing it in the “Find” box; click on the button “Insert” or press “Return” or double click on a keyword to insert it in the field. Use “Esc” key or the “Close” button to close the form. To update the list of the keywords, use the menu item “Items - Update keywords list”.
+
+\paragraph{Check for double items\dots} Open a form to check for double items in the file in use. Click on the button “Check” to fill the grid at the center of the form with the possible double items. In this grid, the items printed in normal style are supposed to be the same than the previous one printed in bold. Two or more items are considered the same if they have the same author, title and year. If the grid is filled with some items, double click or press “Return” on one of them to have it selected in the main form of the software, in order to control it properly and possibly delete it. To update the list of double items after deleting one of them, just click again on the button “Check”.
+
+\paragraph{Replace all BibTex keys\dots} Replaces all the BibTex keys in the file in use with news keys defined according to the BibTex key pattern. If a filter is active, only the filtered items will be modified. This procedure is slow because the software must check that each new key is unique within the file in use.
+
+\paragraph{Replace citations\dots} Open a LaTeX document and replace all its citation commands with the corresponding extended citations and bibliography according to a pattern defined in the “Options”. The resulting modified document will be saved in the same directory of the original one, and its name will be the same with the addition of “-fullcitations” at the end of it. The commands \textbackslash \texttt{cite\{\}}, \textbackslash \texttt{textcite\{\}}, \textbackslash \texttt{parencite\{\}}, \textbackslash \texttt{smartcite\{\}} will be replaced with citations in which the family names of the authors, of the bookauthors and of the editors will be printed after their name, whereas the \textbackslash \texttt{printbibliography} command will be replaced with a sorted list of citation in which their family names come first. The search and replacement of the various bibtex keys is case insensitive. The possible prenote and postnote elements, each of which must be typed within square brackets just after the command and before the BibTex key, will be printed without any modification before and after the citation. If within the postnote there is a pipe (|), the text that is before it will be printed just after the title and a space, whereas what follows it will be printed at the end of the citation. This functionality, which do not work with BibTex or Biber since it's not a default Biblatex option, is useful to print the number of a document or the like which is different from the pages of the citation. If there is a postnote element with page numbers, the possible pages field (for instance, referring to the whole pages of an inbook item) will not be printed. Some characteristics of the extended citations can be modified in the “Options”. Obviously, all the BibTex keys within the LaTeX document must be present in the file in use; if not, the user will receive a warning about that, and will be warned to look within the converted file for unresolved citation commands. Basically, this functionality allows to create a LaTeX file that do not need any more the Biber and Biblatex features, and so can be converted more easily in other formats like Open Document without the issues related to the bibliographic packages. Since sometime the BibTex keys may be common words, note that the user cannot type among curly brackets a word used as BibTex key unless after a citation command (\textbackslash \texttt{cite}, etc.), that is in order to insert a citation, because otherwise the replacement procedure could fail.
+
+\paragraph{Replace and convert\dots} Open a LaTeX document and replace all its citation commands with the corresponding extended citations and bibliography according to a pattern defined in the “Options”, just like the previous functionality, and then convert it in a Writer or Word file using Pandoc or other software. In the first case, the resulting file will be automatically opened in the word processor.
+
+\paragraph{Compact\dots} When an item is deleted, it remains physically in the file in use even if it cannot be shown; with this option it is possible to select a file of Bibfilex and to purge it by deleted items so that its size may be proportionally reduced. It is not possible to select the file in use.
+
+\paragraph{Upgrade data\dots} A new version of Bibfilex might require to upgrade the structure of the files. This menu item allows to upgrade the structure of user Bibfilex files to the last version, so it should be used on all user files when a new version of Biblatex is installed. It can be used safely, since if the version of a file is already the last one, nothing will be done to it. When the upgrading is actually performed, the original version of the file will be preserved with the .bak extension. If a file just converted cannot be opened in Bibfilex, quit the software, run it again and open the file.
+
+\paragraph{Encrypt with GPG\dots} Available only in a GNU/Linux installation - Encrypt a file of Bibfilex or another file with GPG. Select the file, insert the mail or the ID of the recipient, which will be remembered by the software, type the password requested by the system, if not cached, and the encrypted file will be created in the same directory of the original one. If in this directory there is another file with the same name of the one to be created, the operation will be aborted. The encrypted file will have the same name and extension of the original one, plus a further .pgp extension.
+
+\paragraph{Decrypt with GPG\dots} Available only in a GNU/Linux installation - Decrypt a file encrypted with GPG. Select the file with a .pgp extension, type the password requested by the system, if not cached, and the decrypted file will be created in the same directory of the original one. If in this directory there is another file with the same name of the one to be created, the operation will be aborted.
+
+\chapter{Standard filter form}
+
+In the “Standard filter” form it is possible to specify the criteria to filter the items of the file in use. Up to three different fields may be selected in the boxes “Field 1”, “Field 2” and “Field 3”, using the drop-down list, or the arrow keys up and down or just typing the name of the field. The corresponding conditions to each one of them must be selected in the “Condition 1”, “Condition 2” and “Condition 3” boxes. The corresponding values must be typed in the fields “Value 1”, “Value 2” and “Value 3”. If two or three conditions are specified, they will be linked in AND or in OR condition, according to what is specified in the “Link” box. In the values, the character \texttt{''} cannot be used if the \texttt{'} is present, and vice versa. The wildcard is \%.
+
+To search in the “Owned” field, type T as field value to find the checked items, and F to find the uncheked ones. The filter is case insensitive. To search in the attachment field, choose “AttName” as field and remember that the names of the attachments are stored within it as different lines, just as they look in the “Attachments” list. Attachments are not stored in the “file” field, according to Biblatex rules, because this field should not be compiled properly to make possibile the Bibfilex way of manage more attachments for a single item. Anyway, in the exported Biblatex files the attachments names are stored in the “file” field in the JabRef format.
+
+As long as the conditions are specified, the corresponding SQL code will be written in the field at the bottom of the form. Changing the value of the box “Statement” in “User defined” makes possible to modify directly the SQL statement in the field, thus creating more complex queries on more that three fields or making case sensitive filters. Selecting “Standard” in the box “Statement” restores the original use of SQL field.
+
+The following buttons are available.
+
+\paragraph{Apply filter} Apply the filter to the items, without closing the form.
+
+\paragraph{Clear fields} Clear all fields content, but do not remove the filter.
+
+\paragraph{Remove filter} Remove the filter, showing all the items.
+
+\paragraph{Close} Close the form.
+
+\chapter{Options form}
+
+In the “Options” form it is possible to specify some options of the software. It's structured in four tabs.
+
+\section{General options}
+
+\paragraph{Fields shown in grid} The list contains the items fields to be shown or to be hidden in the read only items grid, in the left side of the main form. To show a field, check its name in the list, or uncheck it to hide the field. The contents of the “abstract” and “review” fields will not be shown in the items grid, but only the word “memo”. It will be uppercase if the fields contain some text.
+
+\paragraph{Font size} The list allows to change the font size of the interface; just select the desired value within it.
+
+\paragraph{Date format} The option group allows to change the format of the date everywhere in the software (in the form, in the exported files, etc.). During the importation of a Biblatex file, the format of the date must match the one of the imported file.
+
+\paragraph{Exportation in Biblatex}
+
+\subparagraph{Use double brackets} When this check box is checked, all the items are exported in a Biblatex file between double curly brackets. This may be useful to facilitate the importation of the file in other software.
+
+\subparagraph{Export abstracts as reviews} When this check box is checked, the “Abstract” fields will be exported with a “Review” label, like the content of the “Review” fields. This is useful to import properly the “Abstract” fields in Zotero and in other software who do not recognize the field “Abstract”. Note that this option may produce items with two “Review” fields, if both the “Abstract” and the “Review” fields contain some text. While Zotero and other software may import them both, Bibfilex will import only the last one. So, to create a Biblatex file to be imported in Bibfilex, do not activate this option.
+
+\subparagraph{Do not export abstracts and reviews} When this check box is checked, neither the “Abstract” fields nor the “Review” ones will be exported in the Biblatex file. This is useful to get smaller Biblatex files when they are just referenced within a LaTex document and are not used to share bibliographic information. This option prevails over the previous one.
+
+\paragraph{Start, quit and look}
+
+\subparagraph{Open the last file on start} When this check box is checked, the last file is opened automatically when the software starts.
+
+\subparagraph{Create Biblatex file on exit} When this check box is checked, the exportation of Biblatex file (menu item “File -- Create Biblatex file”) is started automatically just before quitting the software, if the file is use has been changed.
+
+\subparagraph{Rows in field grids} When this check box is checked, the Biblatex fields in the grids are separated by rows, to make them more readable.
+
+\paragraph{BibTex key pattern}
+
+In the field “BibTex key pattern” it is possible to define the pattern of the BibTex keys generated by the software. To define it, just type the names of the desired fields within pipes (|) followed by square brackets and two digits within them. The digits specify the number of characters of the field which must be copied in the key. If the value is “00”, then the first word will be copied, except for the “author” and the “editor” fields. In this last case, if there is a comma in the field, the whole first family name will be copied, even if it's composed of two or more words; if there is no comma, then just the first word will be copied. In these fields, the first space will be removed if it's within the first 3 characters (to get properly the name of authors like “S. Francis”). Possible text outside the pipes and the square brackets will be printed as it is.
+
+Few examples:
+
+\begin{center}
+   \begin{tabular}{ll}
+     \toprule
+     Pattern & Output \\
+     \midrule
+     \texttt{|author|[00]|year|[04]} & Schmidt2013 \\
+     \texttt{|author|[00]:|year|[04]} & Schmidt:2013\\
+     \texttt{|author|[00]-|year|[04]} & Schmidt-2013\\
+     \texttt{|author|[00]|year|[04]|title|[05]} & Schmidt2013Dicti\\
+     \texttt{|author|[00]|year|[04]|title|[10]} & Schmidt2013Dictionary\\
+     \texttt{|author|[00]|year|[04]|title|[15]} & Schmidt2013Dictionaryofcom\\
+     \texttt{|author|[00]|year|[04]|title|[00]} & Schmidt2013Dictionary\\
+     \texttt{|author|[00]:|year|[04]:|title|[00]} & Schmidt:2013:Dictionary\\
+     \texttt{|author|[00]-|year|[04]-|title|[00]} & Schmidt-2013-Dictionary\\
+     \bottomrule
+  \end{tabular}
+\end{center}
+
+If the “author” field is specified in the field “BibTex key composition” and in the current item has no value, the content of the “editor” field will be used instead of it.
+
+\subparagraph{All authors} When this check box is checked, if the field author is included in the BibTex key pattern, if there are more than one author (or editor, if the author is not indicated) and the length of the characters to be copied is “00”, then all their family names will be included in the key.
+
+\noindent For example, if the authors are “Schmidt, John and Miller, Paul and Taylor, Luis” they key could be “SchmidtMillerTaylor2013Dictionary”.
+
+\subparagraph{Key lowercase} When this check box is checked, the BibTex keys will be created in lower case.
+
+\section{Citations options}
+
+In this tab are gathered the options related with the composition of the citations.
+
+\paragraph{Separator among authors (and)} In this field are specified the characters that will be used in the citations to separate the names of the authors and of the editors (fields “author”, “bookauthors” and “editor”) when they are more than one in the same field; these characters will replace the “and” word possibly present in those fields. Usually they are “--”.
+
+\paragraph{More authors (and others)} In this field are specified the words that will be used in the citations to replace the “and others” indication, to mean that there are more authors, bookauthors or editors than those typed in these fields.
+
+\paragraph{Editor in place of author if this is empty} When this check box is checked, if the “author” or a “bookauthor” field is empty and the “editor” field is filled, the content of the former fields will be replaced with the content of the latter. In this way, if there is no author, the editor will be put in its place. If in the citation pattern (see below) the “editor” field is conteined in another cell, it will be skipped, since it's just inserted in the place of the author. 
+
+\noindent For instance, is this check box is disabled, a citation could be: \textit{A guide to computer}, edited by M. Robin. Is the check box is enabled it will be: \textsc{M. Robin} (ed.), \textit{A guide to computer}.
+
+\paragraph{Editor in place of author is followed by} In this field is specified the text that will follow the editor when it's printed in the place of the author or of the bookauthor (like “ed.”).
+
+\paragraph{Use initial of authors name} When this check box is checked, only the initial letter of the names of the authors, of the bookauthors and of the editors with be printed.
+
+\paragraph{Shorten title in short citations} When this check box is checked, in the citations following the first one the title will be shortened up to the first asterisk, or to the first period, or to the first exclamation mark, or to the first question mark, or the first colon. The best way to indicate where the title should be shortened is to type an asterisk in the “title” field just after the last word to be included. The asterisk will not be exported in any Biblatex files, since it's not mentioned as indicator in the Biblatex documentation.
+
+\paragraph{Shorten author in short citations} When this check box is checked, in the citations following the first one only the family name of the author or of the editor in its place will be printed, not the name.
+
+\paragraph{Add backslash to periods in citations} When this check box is checked, in each citation every period, question mark or exclamation mark followed by a space (\texttt{. }, etc.) will be replaced by the same character followed by a backslash and a space (\texttt{.\textbackslash \space }, etc.). The space preceded by a backslash will not be considered by LaTex at the end of a period, and so will not be printed as double space even if the \texttt{\textbackslash frenchspacing} command has not been activated.
+
+\paragraph{Page and pages numbers are preceded by} These two fields contain the text that should precede the “pages” field or the pages reference in a postnote. The first field contains the text to be printed when a single page is indicated, whereas the second field contains the text to be printed when more pages are indicated, that is a hyphen (-) is contained within the “pages” field or the postnote. Usually they are filled as “p.” and “pp.” or are just empty.
+
+\paragraph{Citation as “ibidem” if it's the same as before} When this check box is checked, if a citation is relative to the same item (book, article, etc.) of the previous one, and if they are both within the same area, it will be replaced by an “ibidem” indication, which can be specified by the user. The area begins with the LaTex command specified in the option group “No 'ibidem' or 'idem' just after this command”. The software considers within the same area all the citations that follow the command specified in that option group and that come before the next recurrence of the same command, even if they are in the body of the text.
+
+\noindent For instance, is this check box is disabled, two citations of the same item could be: \textsc{M. Robin}, \textit{A guide to computer}, ED Publishing, New York 2000, 134-135. \textsc{M. Robin}, \textit{A guide to computer}, ED Publishing, New York 2000, 150-160. If the check box is enabled, the same citations become: \textsc{M. Robin}, \textit{A guide to computer}, ED Publishing, New York 2000, 134-135. Ibidem, 150-160.
+
+\paragraph{Ibidem text} In this field is specified the text that will replace the citation within the footnotes or in the body of the text to mean that it's related to the same item of the previous one.
+
+\paragraph{Author as “idem” if it's the same as before} When this check box is checked, if the name and the family name of an author or of an editor in its place is the same of the one of the previous citation, and if they are within the same area specified below (chapter, section, footnote, etc.), the second one will be replaced with an “idem” indication, which can be specified by the user. The area begins with the LaTex command specified in the option group “No 'ibidem' or 'idem' just after this command”. The software considers within the same area all the citations that follow the command specified in that option group and that come before the next recurrence of the same command, even if they are in the body of the text. Anyway, if the author is the same of the bookauthor (for instance, because we have an assay within a collection of assays of the same author), the bookauthor will be replaced with the “idem” indication. Furthermore, note that the software cannot distinguish between authors who have the same name and family name, but are different persons; so, if this options is activated and there are homonymies among the authors of the text to be converted, the user should check carefully the final citations.
+
+\noindent For instance, is this check box is disabled, two citations in the same area could be: \textsc{M. Robin}, \textit{A guide to computer}, ED Publishing, New York 2000. \textsc{M. Robin}, \textit{Computer today}, RT Publishing, London 2010. If the check box is enabled, the same citations become: \textsc{M. Robin}, \textit{A guide to computer}, ED Publishing, New York 2000. \textsc{Id.}, \textit{Computer today}, RT Publishing, London 2010.
+
+\paragraph{Idem text in the footnotes} In this field is specified the text that will replace the author or the editor in its place within the footnotes or in the body of the text to mean that it's the same of the previous citation.
+
+\paragraph{Idem text in the bibliography} In this field is specified the text that will replace the author or the editor in its place within the bibliography to mean that it's the same of the previous citation.
+
+\paragraph{No “ibidem” or “idem” just after this command} In this option group can be specified the command which begins the area (chapter, section, footnote, etc.) whose first citation will not be replaced by “ibidem” nor its author will be replaced by “idem” in any case.
+
+\section{Citations pattern}
+
+The grid in the “Citations pattern” tab contains the patterns used by the software to create the citations of the various items. Three different kind of citations are available for each Biblatex entry type: \textit{normal}, which is the first citation of an item in a LaTex document, \textit{short}, which is the citations of an item following the first, and \textit{biblio}, which is the citation of the item in the bibliography. So it's possible to set different structures of citations according to the position of an item in the LaTeX document.
+
+This functionalities is used by the features activated by the menu items “Items -- Copy plain citations”, “Items -- Copy formatted citations”, “Tools -- Replace citations\dots” and “Tools -- Replace and convert\dots”. In the first two cases, the \textit{normal} citation will be used.
+
+Basically, a citation is created putting together all the elements contained in the cells of the row corresponding to the type of an item (article, book, etc.), starting from the left and going rightward. If a cell contains the name of one field, possibly among other elements (commas, semicolon, LaTex formatting commands, etc.), then all the content of the cell will be used for the citation only if that field is not empty; otherwise all its content will be skipped. On the contrary, if in a cell there is no field name, all the content of the cell will be actually printed in the citation. Obviously, the name of a field will be replaced with its content. To insert the name of a field, just type it between two pipes (e.g. |author|, |title|, etc.). Only one file for each cell is allowed.
+
+The “Citations pattern” grid is filled by default by a basic citation pattern for all types, made by “author” and “title”. Each citation type may be redefined by the user. The modifications are remembered by the software.
+
+The buttons “Load” and “Save” allow to load and to save an XML file with the content of the grid; in this way, a full citations pattern may be saved as a backup or shared with other people.
+
+The field “Pattern loaded” is compiled by the software with the name of the last pattern loaded by the user. Anyway, the content of this field may be modified manually by the user to remember with citations pattern is in use.
+
+\section{Conversion}
+
+In this section it's possible to set how Pandoc or other software should convert a file with extended citation created by Bibfilex. This conversion is activated with the menu item “Tools -- Replace and convert\dots”.
+
+\paragraph{Destination format} The options group allows to chose the format in which Pandoc should convert the file with extended citations produced by Bibfilex. The comand that is run is the following \texttt{pandoc filename-fullcitations.tex -o filename.odt}. Obviously, the extension of the convert file is changed according to the chosen format. Anyway, if the last options is checked, a user defined command will be run insted of the one above to create the converted file.
+
+\paragraph{User defined command} In this field it's possibile to enter a command to run a converter different from Pandoc, or to run it with specific parameters. It is used when the last option of the previous option group is selected. In this command, the name of the input file, that is selected with the menu item “Tools -- Replace and convert\dots”, should be entered as \%i, while the name of the output file as \%o, followed by its extension.
+
+\noindent For instance, a user defined command that runs Pandoc in the same way of the predefined options is: \texttt{pandoc \%i -o \%o.odt}. Note that in some operative systems it's necessary to call the converter along with its path (e.g. pandoc on OSX must be called as \texttt{/usr/local/bin/pandoc}).
+
+\chapter{Stop list}
+
+In the “Stop list” form it is possible to write a list of words that must not be considered in the creation of a BibTex key. This functionality will have no effects in the copy of the “author” and “editor” fields.
+
+When the software creates a key, if the first word of a field is included in the stop list, it's skipped and the next one is included in the key. In this way it is possible to ignore articles and other words that may not be significant as a reminder of an item.
+
+Each word that should be skipped in creating a BibText key must be typed in a new line within the text field of the form. With the button “Sort” it is possible to sort them all. Each word in the stop list is supposed to be followed by a space in the fields, unless it end with a apostrophe. If a wird to be skipped ends with a dot (like “S.” as the beginning of S. Francis, etc.), type it it the list without the dot.
+
+\chapter{Biblatex: basic rules}
+
+In this part of the manual are reported some basic information to compile the fields of an item according to Biblatex rules. They have been taken from \textsc{Philipp Lehman}, \textit{The biblatex Package Programmable Bibliographies and Citations}, Version 2.9a, available in http://mirrors.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf.
+
+\section{Author and editor}
+
+The author, bookauthor and editors fields must be compiled as “Family name, Name”. If they are not physical persons but institutions, no comma must be used inside it. If the authors and editors are more than one, then each of them must be separated by “and”.  If the authors or the editors are more than two or three, the words “and others” may be added at the end of the field. Some examples:
+\begin{itemize}
+  \item Brown, Marc George
+  \item Brown, Marc George and Schmidt, Mary
+  \item Brown, Marc George and Schmidt, Mary and O'Malley, Marc
+  \item Brown, Marc George and Schmidt, Mary and O'Malley, Marc and others
+  \item Institute for computing
+  \item Institute for computing and Institute for planning
+\end{itemize}
+
+\section{Entry types}
+
+\paragraph{article}
+An article in a journal, magazine, newspaper, or other periodical which forms a self-
+contained unit with its own title. The title of the periodical is given in the journaltitle
+field. If the issue has its own title in addition to the main title of the periodical, it goes in the
+issuetitle field. Note that editor and related fields refer to the journal while translator
+and related fields refer to the article.
+
+\paragraph{book}
+A single-volume book with one or more authors where the authors share credit for the
+work as a whole. This entry type also covers the function of the @inbook type of traditional
+BibTeX.
+
+\paragraph{mvbook}
+A multi-volume @book. For backwards compatibility, multi-volume books are also supported
+by the entry type @book. However, it is advisable to make use of the dedicated entry type @mvbook.
+
+\paragraph{inbook}
+A part of a book which forms a self-contained unit with its own title. Note that the profile
+of this entry type is different from standard BibTeX.
+
+\paragraph{bookinbook}
+This type is similar to @inbook but intended for works originally published as a stand-alone
+book. A typical example are books reprinted in the collected works of an author.
+
+\paragraph{suppbook}
+Supplemental material in a @book. This type is closely related to the @inbook entry type.
+While @inbook is primarily intended for a part of a book with its own title (e. g., a single
+essay in a collection of essays by the same author), this type is provided for elements such
+as prefaces, introductions, forewords, afterwords, etc. which often have a generic title only.
+Style guides may require such items to be formatted differently from other @inbook items.
+The standard styles will treat this entry type as an alias for @inbook.
+
+\paragraph{booklet} 
+A book-like work without a formal publisher or sponsoring institution. Use the field
+howpublished to supply publishing information in free format, if applicable. The field type
+may be useful as well.
+
+\paragraph{collection}
+A single-volume collection with multiple, self-contained contributions by distinct authors
+which have their own title. The work as a whole has no overall author but it will usually
+have an editor.
+
+\paragraph{mvcollection}
+A multi-volume @collection. For backwards compatibility, multi-volume collections are
+also supported by the entry type @collection. However, it is advisable to make use of the
+dedicated entry type @mvcollection.
+
+\paragraph{incollection}
+A contribution to a collection which forms a self-contained unit with a distinct author
+and title. The author refers to the title, the editor to the booktitle, i. e., the title of the
+collection.
+
+\paragraph{suppcollection}
+Supplemental material in a @collection. This type is similar to @suppbook but related to
+the @collection entry type. The standard styles will treat this entry type as an alias for
+@incollection.
+
+\paragraph{manual}
+Technical or other documentation, not necessarily in printed form. The author or editor
+is omissible.
+
+\paragraph{misc}
+A fallback type for entries which do not fit into any other category. Use the field
+howpublished to supply publishing information in free format, if applicable. The field
+type may be useful as well. author, editor, and year are omissible.
+
+\paragraph{online}
+An online resource. author, editor, and year are omissible. This entry
+type is intended for sources such as web sites which are intrinsically online resources. Note
+that all entry types support the url field. For example, when adding an article from an
+online journal, it may be preferable to use the @article type and its url field.
+
+\paragraph{patent}
+A patent or patent request. The number or record token is given in the number field. Use
+the type field to specify the type and the location field to indicate the scope of the patent,
+if different from the scope implied by the type. Note that the location field is treated as a
+key list with this entry type.
+
+\paragraph{periodical}
+An complete issue of a periodical, such as a special issue of a journal. The title of the
+periodical is given in the title field. If the issue has its own title in addition to the main
+title of the periodical, it goes in the issuetitle field. The editor is omissible.
+
+\paragraph{suppperiodical}
+Supplemental material in a @periodical. This type is similar to @suppbook but related to
+the @periodical entry type. The role of this entry type may be more obvious if you bear in
+mind that the @article type could also be called @inperiodical. This type may be useful
+when referring to items such as regular columns, obituaries, letters to the editor, etc. which
+only have a generic title. Style guides may require such items to be formatted differently
+from articles in the strict sense of the word. The standard styles will treat this entry type
+as an alias for @article.
+
+\paragraph{proceedings}
+A single-volume conference proceedings. This type is very similar to @collection. It
+supports an optional organization field which holds the sponsoring institution. The
+editor is omissible.
+
+\paragraph{mvproceedings}
+A multi-volume @proceedings entry. For backwards compatibility, multi-volume proceed-
+ings are also supported by the entry type @proceedings. However, it is advisable to make
+use of the dedicated entry type @mvproceedings.
+
+\paragraph{inproceedings}
+An article in a conference proceedings. This type is similar to @incollection. It supports
+an optional organization field.
+
+\paragraph{reference}
+A single-volume work of reference such as an encyclopedia or a dictionary. This is a more
+specific variant of the generic @collection entry type. The standard styles will treat this
+entry type as an alias for @collection.
+
+\paragraph{mvreference}
+A multi-volume @reference entry. The standard styles will treat this entry type as an
+alias for @mvcollection. For backwards compatibility, multi-volume references are also
+supported by the entry type @reference. However, it is advisable to make use of the
+dedicated entry type @mvreference.
+
+\paragraph{inreference}
+An article in a work of reference.
+
+\paragraph{report}
+A technical report, research report, or white paper published by a university or some other
+institution. Use the type field to specify the type of report. The sponsoring institution goes
+in the institution field.
+
+\paragraph{thesis}
+A thesis written for an educational institution to satisfy the requirements for a degree. Use
+the type field to specify the type of thesis.
+
+\paragraph{unpublished}
+A work with an author and a title which has not been formally published, such as a
+manuscript or the script of a talk. Use the fields howpublished and note to supply additional
+information in free format, if applicable.
+
+\section{Entry fields}
+
+\noindent Some optional fields have not been implemented in Bibfilex.
+
+\paragraph{abstract}
+This field is intended for recording abstracts in a bib file, to be printed by a special biblio-
+graphy style. It is not used by all standard bibliography styles.
+
+\paragraph{review}
+This field is intended for recording review in a bib file, to be printed by a special biblio-
+graphy style. It is not used by Biblatex, but it is used in some bibliography managers. 
+
+\paragraph{addendum}
+Miscellaneous bibliographic data to be printed at the end of the entry. This is similar to the
+note field except that it is printed at the end of the bibliography entry.
+
+\paragraph{afterword}
+The author(s) of an afterword to the work. If the author of the afterword is identical to the
+editor and/or translator, the standard styles will automatically concatenate these fields
+in the bibliography. See also introduction and foreword.
+
+\paragraph{annotation}
+This field may be useful when implementing a style for annotated bibliographies. It is not
+used by all standard bibliography styles. Note that this field is completely unrelated to
+annotator. The annotator is the author of annotations which are part of the work cited.
+
+\paragraph{annotator}
+The author(s) of annotations to the work. If the annotator is identical to the editor
+and/or translator, the standard styles will automatically concatenate these fields in the
+bibliography. See also commentator.
+
+\paragraph{author}
+The author(s) of the title.
+
+\paragraph{authortype}
+The type of author. This field will affect the string (if any) used to introduce the author.
+Not used by the standard bibliography styles.
+
+\paragraph{bookauthor}
+The author(s) of the booktitle.
+
+\paragraph{bookpagination}
+If the work is published as part of another one, this is the pagination scheme of the enclosing
+work, i. e., bookpagination relates to pagination like booktitle to title. The value of
+this field will affect the formatting of the pages and pagetotal fields. The key should
+be given in the singular form. Possible keys are page, column, line, verse, section, and
+paragraph. See also pagination.
+
+\paragraph{booksubtitle}
+The subtitle related to the booktitle. If the subtitle field refers to a work which is part
+of a larger publication, a possible subtitle of the main work is given in this field. See also
+subtitle.
+
+\paragraph{booktitle}
+If the title field indicates the title of a work which is part of a larger publication, the title
+of the main work is given in this field. See also title.
+
+\paragraph{booktitleaddon}
+An annex to the booktitle, to be printed in a different font.
+
+\paragraph{chapter}
+A chapter or section or any other unit of a work.
+
+\paragraph{commentator}
+The author(s) of a commentary to the work. Note that this field is intended for commented
+editions which have a commentator in addition to the author. If the work is a stand-
+alone commentary, the commentator should be given in the author field. If the commen-
+tator is identical to the editor and/or translator, the standard styles will automatically
+concatenate these fields in the bibliography. See also annotator.
+
+\paragraph{date}
+The publication date. See also month and year.
+
+\paragraph{doi}
+The Digital Object Identifier of the work.
+
+\paragraph{edition}
+The edition of a printed publication. This must be an integer, not an ordinal. Don’t say
+edition={First} or edition={1st} but edition={1}. The bibliography style converts
+this to a language dependent ordinal. It is also possible to give the edition as a literal string,
+for example “Third, revised and expanded edition”.
+
+\paragraph{editor}
+The editor(s) of the title, booktitle, or maintitle, depending on the entry type. Use the
+editortype field to specify the role if it is different from ‘editor’. See § 2.3.6 for further
+hints.
+
+\paragraph{editora}
+A secondary editor performing a different editorial role, such as compiling, redacting, etc.
+Use the editoratype field to specify the role.
+
+\paragraph{editorb}
+Another secondary editor performing a different role. Use the editorbtype field to specify
+the role.
+
+\paragraph{editorc}
+Another secondary editor performing a different role. Use the editorctype field to specify
+the role.
+
+\paragraph{editortype}
+The type of editorial role performed by the editor. Roles supported by default are editor,
+compiler, founder, continuator, redactor, reviser, collaborator. The role ‘editor’ is
+the default. In this case, the field is omissible.
+
+\paragraph{editoratype}
+Similar to editortype but referring to the editora field.
+
+\paragraph{editorbtype}
+Similar to editortype but referring to the editorb field.
+
+\paragraph{editorctype}
+Similar to editortype but referring to the editorc field.
+
+\paragraph{eid}
+The electronic identifier of an @article.
+
+\paragraph{entrysubtype}
+This field, which is not used by the standard styles, may be used to specify a subtype of an
+entry type. This may be useful for bibliography styles which support a finer-grained set of
+entry types.
+
+\paragraph{eprint}
+The electronic identifier of an online publication. This is roughly comparable to a doi but
+specific to a certain archive, repository, service, or system. See § 3.11.7 for details. Also see
+eprinttype and eprintclass.
+
+\paragraph{eprintclass}
+Additional information related to the resource indicated by the eprinttype field. This
+could be a section of an archive, a path indicating a service, a classification of some sort,
+etc. Also see eprint and eprinttype.
+
+\paragraph{eprinttype}
+The type of eprint identifier, e. g., the name of the archive, repository, service, or system
+the eprint field refers to. Also see eprint and eprintclass.
+
+\paragraph{eventdate}
+The date of a conference, a symposium, or some other event in @proceedings and
+@inproceedings entries. See also eventtitle and venue.
+
+\paragraph{eventtitle}
+The title of a conference, a symposium, or some other event in @proceedings and
+@inproceedings entries. Note that this field holds the plain title of the event. Things like “Proceedings of the Fifth
+XYZ Conference” go into the titleaddon or booktitleaddon field, respectively. See also
+eventdate and venue.
+
+\paragraph{eventtitleaddon}
+An annex to the eventtitle field. Can be used for known event acronyms, for example.
+
+\paragraph{foreword}
+The author(s) of a foreword to the work. If the author of the foreword is identical to the
+editor and/or translator, the standard styles will automatically concatenate these fields
+in the bibliography. See also introduction and afterword.
+
+\paragraph{holder}
+The holder(s) of a @patent, if different from the author. Not that corporate holders need to
+be wrapped in an additional set of braces.
+
+\paragraph{howpublished}
+A publication notice for unusual publications which do not fit into any of the common
+categories.
+
+\paragraph{indextitle}
+A title to use for indexing instead of the regular title field. This field may be useful
+if you have an entry with a title like “An Introduction to . . . ” and want that indexed as
+“Introduction to . . . , An”. Style authors should note that biblatex automatically copies the
+value of the title field to indextitle if the latter field is undefined.
+
+\paragraph{institution}
+The name of a university or some other institution, depending on the entry type. Traditional
+BibTeX uses the field name school for theses, which is supported as an alias.
+
+\paragraph{introduction}
+The author(s) of an introduction to the work. If the author of the introduction is identical
+to the editor and/or translator, the standard styles will automatically concatenate these
+fields in the bibliography. See also foreword and afterword.
+
+\paragraph{isan}
+The International Standard Audiovisual Number of an audiovisual work. Not used by the
+standard bibliography styles.
+
+\paragraph{isbn}
+The International Standard Book Number of a book.
+
+\paragraph{ismn}
+The International Standard Music Number for printed music such as musical scores. Not
+used by the standard bibliography styles.
+
+\paragraph{isrn}
+The International Standard Technical Report Number of a technical report.
+
+\paragraph{issn}
+The International Standard Serial Number of a periodical.
+
+\paragraph{issue}
+The issue of a journal. This field is intended for journals whose individual issues are
+identified by a designation such as ‘Spring’ or ‘Summer’ rather than the month or a number.
+Since the placement of issue is similar to month and number, this field may also be useful
+with double issues and other special cases. See also month, number.
+
+\paragraph{issuesubtitle}
+The subtitle of a specific issue of a journal or other periodical.
+
+\paragraph{issuetitle}
+The title of a specific issue of a journal or other periodical.
+
+\paragraph{iswc}
+The International Standard Work Code of a musical work. Not used by the standard
+bibliography styles.
+
+\paragraph{journalsubtitle}
+The subtitle of a journal, a newspaper, or some other periodical.
+
+\paragraph{journaltitle}
+The name of a journal, a newspaper, or some other periodical.
+
+\paragraph{label}
+A designation to be used by the citation style as a substitute for the regular label if any
+data required to generate the regular label is missing. For example, when an author-year
+citation style is generating a citation for an entry which is missing the author or the year,
+it may fall back to label. Note that, in contrast to shorthand, label
+is only used as a fallback. See also shorthand.
+
+\paragraph{language}
+The language(s) of the work. Languages may be specified literally or as localization keys. If
+localization keys are used, the prefix lang is omissible. See also origlanguage.
+
+\paragraph{library}
+This field may be useful to record information such as a library name and a call number.
+This may be printed by a special bibliography style if desired. Not used by the standard
+bibliography styles.
+
+\paragraph{location}
+The place(s) of publication, i. e., the location of the publisher or institution, depending
+on the entry type. Traditional BibTeX uses the field name address, which is supported as
+an alias. With @patent entries, this list indicates the scope of a patent.
+
+\paragraph{mainsubtitle}
+The subtitle related to the maintitle. See also subtitle.
+
+\paragraph{maintitle}
+The main title of a multi-volume book, such as Collected Works. If the title or booktitle
+field indicates the title of a single volume which is part of multi-volume book, the title of
+the complete work is given in this field.
+
+\paragraph{maintitleaddon}
+An annex to the maintitle, to be printed in a different font.
+
+\paragraph{month}
+The publication month. This must be an integer, not an ordinal or a string. Don’t say
+month={January} but month={1}. The bibliography style converts this to a language de-
+pendent string or ordinal where required.
+
+\paragraph{nameaddon}
+An addon to be printed immediately after the author name in the bibliography. Not used
+by the standard bibliography styles. This field may be useful to add an alias or pen name
+(or give the real name if the pseudonym is commonly used to refer to that author).
+
+\paragraph{note}
+Miscellaneous bibliographic data which does not fit into any other field. The note field
+may be used to record bibliographic data in a free format. Publication facts such as “Reprint
+of the edition London 1831” are typical candidates for the note field. See also addendum.
+
+\paragraph{number}
+The number of a journal or the volume/number of a book in a series. See also issue. 
+With @patent entries, this is the number or record token of a patent or patent request.
+
+\paragraph{organization}
+The organization(s) that published a @manual or an @online resource, or sponsored a
+conference.
+
+\paragraph{origdate}
+If the work is a translation, a reprint, or something similar, the publication date of the
+original edition. Not used by the standard bibliography styles. See also date.
+origlanguage field (key). If the work is a translation, the language of the original work. 
+See also language.
+
+\paragraph{origlanguage}
+If the work is a translation, the language of the original work. See also language.
+
+\paragraph{origlocation}
+If the work is a translation, a reprint, or something similar, the location of the original
+edition. Not used by the standard bibliography styles.
+
+\paragraph{origpublisher}
+If the work is a translation, a reprint, or something similar, the publisher of the original
+edition. Not used by the standard bibliography styles.
+
+\paragraph{origtitle}
+If the work is a translation, the title of the original work. Not used by the standard
+bibliography styles. See also title.
+
+\paragraph{pages}
+One or more page numbers or page ranges. If the work is published as part of another one,
+such as an article in a journal or a collection, this field holds the relevant page range in
+that other work. It may also be used to limit the reference to a specific part of a work (a
+chapter in a book, for example).
+
+\paragraph{pagetotal}
+The total number of pages of the work.
+
+\paragraph{pagination}
+The pagination of the work. The value of this field will affect the formatting the postnote
+argument to a citation command. The key should be given in the singular form. Possible
+keys are page, column, line, verse, section, and paragraph. See also bookpagination.
+
+\paragraph{part}
+The number of a partial volume. This field applies to books only, not to journals. It may be
+used when a logical volume consists of two or more physical ones. In this case the number
+of the logical volume goes in the volume field and the number of the part of that volume in
+the part field. See also volume.
+
+\paragraph{publisher}
+The name(s) of the publisher(s).
+
+\paragraph{pubstate}
+The publication state of the work, e. g., ‘in press’.
+
+\paragraph{reprinttitle}
+The title of a reprint of the work. Not used by the standard styles.
+
+\paragraph{series}
+The name of a publication series, such as “Studies in . . . ”, or the number of a journal series.
+Books in a publication series are usually numbered. The number or volume of a book in
+a series is given in the number field. Note that the @article entry type makes use of the
+series field as well, but handles it in a special way.
+
+\paragraph{shortauthor}
+The author(s) of the work, given in an abbreviated form. This field is mainly intended for
+abbreviated forms of corporate authors.
+
+\paragraph{shorteditor}
+The editor(s) of the work, given in an abbreviated form. This field is mainly intended for
+abbreviated forms of corporate editors.
+
+\paragraph{shorthand}
+A special designation to be used by the citation style instead of the usual label. This field is
+intended for citation aliasing. If defined, it overrides the default label. If any of the cited
+bibliography entries includes a shorthand field, biblatex automatically builds a list of
+shorthands which may be printed in addition to the regular bibliography. See also label.
+
+\paragraph{shorthandintro}
+The verbose citation styles which comes with this package use a phrase like “henceforth
+cited as [shorthand]” to introduce shorthands on the first citation. If the shorthandintro
+field is defined, it overrides the standard phrase. Note that the alternative phrase must
+include the shorthand.
+
+\paragraph{shortjournal}
+A short version or an acronym of the journaltitle. Not used by the standard bibliography
+styles.
+
+\paragraph{shortseries}
+A short version or an acronym of the series field. Not used by the standard bibliography
+styles.
+
+\paragraph{shorttitle}
+The title in an abridged form. This field is usually not included in the bibliography. It is
+intended for citations in author-title format. If present, the author-title citation styles use
+this field instead of title.
+
+\paragraph{subtitle}
+The subtitle of the work.
+
+\paragraph{title}
+The title of the work.
+
+\paragraph{titleaddon}
+An annex to the title, to be printed in a different font.
+
+\paragraph{translator}
+The translator(s) of the title or booktitle, depending on the entry type. If the translator
+is identical to the editor, the standard styles will automatically concatenate these fields in
+the bibliography.
+
+\paragraph{type}
+The type of a manual, patent, report, or thesis. This field may also be useful for the
+custom types listed in § 2.1.3.
+
+\paragraph{url}
+The URL of an online publication. If it is not URL-escaped (no ‘\%’ chars), with Biber, it
+will be URI-escaped according to RFC 3987, that is, even Unicode chars will be correctly
+escaped.
+
+\paragraph{urldate}
+The access date of the address specified in the url field.
+
+\paragraph{venue}
+The location of a conference, a symposium, or some other event in @proceedings and
+@inproceedings entries. Note that the location list holds the place of publication. It therefore corresponds to the
+publisher and institution lists. The location of the event is given in the venue field. See
+also eventdate and eventtitle.
+
+\paragraph{version}
+The revision number of a piece of software, a manual, etc.
+
+\paragraph{volume}
+The volume of a multi-volume book or a periodical. See also part.
+
+\paragraph{volumes}
+The total number of volumes of a multi-volume work. Depending on the entry type, this
+field refers to title or maintitle.
+
+\paragraph{year}
+The year of publication.
+
+\end{document}

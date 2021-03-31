@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <grid version="3">
+    <saveoptions create="False" position="False" content="True"/>
+    <content>
+      <cells cellcount="273">
+        <cell1 column="0" row="0" text="Article normal"/>
+        <cell2 column="0" row="1" text="Article short"/>
+        <cell3 column="0" row="2" text="Article biblio"/>
+        <cell4 column="0" row="3" text="Book normal"/>
+        <cell5 column="0" row="4" text="Book short"/>
+        <cell6 column="0" row="5" text="Book biblio"/>
+        <cell7 column="0" row="6" text="Mvbook normal"/>
+        <cell8 column="0" row="7" text="Mvbook short"/>
+        <cell9 column="0" row="8" text="Mvbook biblio"/>
+        <cell10 column="0" row="9" text="Inbook normal"/>
+        <cell11 column="0" row="10" text="Inbook short"/>
+        <cell12 column="0" row="11" text="Inbook biblio"/>
+        <cell13 column="0" row="12" text="Bookinbook normal"/>
+        <cell14 column="0" row="13" text="Bookinbook short"/>
+        <cell15 column="0" row="14" text="Bookinbook biblio"/>
+        <cell16 column="0" row="15" text="Suppbook normal"/>
+        <cell17 column="0" row="16" text="Suppbook short"/>
+        <cell18 column="0" row="17" text="Suppbook biblio"/>
+        <cell19 column="0" row="18" text="Booklet normal"/>
+        <cell20 column="0" row="19" text="Booklet short"/>
+        <cell21 column="0" row="20" text="Booklet biblio"/>
+        <cell22 column="0" row="21" text="Collection normal"/>
+        <cell23 column="0" row="22" text="Collection short"/>
+        <cell24 column="0" row="23" text="Collection biblio"/>
+        <cell25 column="0" row="24" text="Mvcollection normal"/>
+        <cell26 column="0" row="25" text="Mvcollection short"/>
+        <cell27 column="0" row="26" text="Mvcollection biblio"/>
+        <cell28 column="0" row="27" text="Incollection normal"/>
+        <cell29 column="0" row="28" text="Incollection short"/>
+        <cell30 column="0" row="29" text="Incollection biblio"/>
+        <cell31 column="0" row="30" text="Suppcollection normal"/>
+        <cell32 column="0" row="31" text="Suppcollection short"/>
+        <cell33 column="0" row="32" text="Suppcollection biblio"/>
+        <cell34 column="0" row="33" text="Manual normal"/>
+        <cell35 column="0" row="34" text="Manual short"/>
+        <cell36 column="0" row="35" text="Manual biblio"/>
+        <cell37 column="0" row="36" text="Misc normal"/>
+        <cell38 column="0" row="37" text="Misc short"/>
+        <cell39 column="0" row="38" text="Misc biblio"/>
+        <cell40 column="0" row="39" text="Online normal"/>
+        <cell41 column="0" row="40" text="Online short"/>
+        <cell42 column="0" row="41" text="Online biblio"/>
+        <cell43 column="0" row="42" text="Patent normal"/>
+        <cell44 column="0" row="43" text="Patent short"/>
+        <cell45 column="0" row="44" text="Patent biblio"/>
+        <cell46 column="0" row="45" text="Periodical normal"/>
+        <cell47 column="0" row="46" text="Periodical short"/>
+        <cell48 column="0" row="47" text="Periodical biblio"/>
+        <cell49 column="0" row="48" text="Suppperiodical normal"/>
+        <cell50 column="0" row="49" text="Suppperiodical short"/>
+        <cell51 column="0" row="50" text="Suppperiodical biblio"/>
+        <cell52 column="0" row="51" text="Proceedings normal"/>
+        <cell53 column="0" row="52" text="Proceedings short"/>
+        <cell54 column="0" row="53" text="Proceedings biblio"/>
+        <cell55 column="0" row="54" text="Mvproceedings normal"/>
+        <cell56 column="0" row="55" text="Mvproceedings short"/>
+        <cell57 column="0" row="56" text="Mvproceedings biblio"/>
+        <cell58 column="0" row="57" text="Inproceedings normal"/>
+        <cell59 column="0" row="58" text="Inproceedings short"/>
+        <cell60 column="0" row="59" text="Inproceedings biblio"/>
+        <cell61 column="0" row="60" text="Reference normal"/>
+        <cell62 column="0" row="61" text="Reference short"/>
+        <cell63 column="0" row="62" text="Reference biblio"/>
+        <cell64 column="0" row="63" text="Mvreference normal"/>
+        <cell65 column="0" row="64" text="Mvreference short"/>
+        <cell66 column="0" row="65" text="Mvreference biblio"/>
+        <cell67 column="0" row="66" text="Inreference normal"/>
+        <cell68 column="0" row="67" text="Inreference short"/>
+        <cell69 column="0" row="68" text="Inreference biblio"/>
+        <cell70 column="0" row="69" text="Report normal"/>
+        <cell71 column="0" row="70" text="Report short"/>
+        <cell72 column="0" row="71" text="Report biblio"/>
+        <cell73 column="0" row="72" text="Thesis normal"/>
+        <cell74 column="0" row="73" text="Thesis short"/>
+        <cell75 column="0" row="74" text="Thesis biblio"/>
+        <cell76 column="0" row="75" text="Unpublished normal"/>
+        <cell77 column="0" row="76" text="Unpublished short"/>
+        <cell78 column="0" row="77" text="Unpublished biblio"/>
+        <cell79 column="1" row="0" text="\textsc{|author|}, "/>
+        <cell80 column="1" row="1" text="\textsc{|author|}, "/>
+        <cell81 column="1" row="2" text="\textsc{|author|}, "/>
+        <cell82 column="1" row="3" text="\textsc{|author|}, "/>
+        <cell83 column="1" row="4" text="\textsc{|author|}, "/>
+        <cell84 column="1" row="5" text="\textsc{|author|}, "/>
+        <cell85 column="1" row="6" text="|author|, "/>
+        <cell86 column="1" row="7" text="|author|, "/>
+        <cell87 column="1" row="8" text="|author|, "/>
+        <cell88 column="1" row="9" text="\textsc{|author|}, "/>
+        <cell89 column="1" row="10" text="\textsc{|author|}, "/>
+        <cell90 column="1" row="11" text="\textsc{|author|}, "/>
+        <cell91 column="1" row="12" text="|author|, "/>
+        <cell92 column="1" row="13" text="|author|, "/>
+        <cell93 column="1" row="14" text="|author|, "/>
+        <cell94 column="1" row="15" text="|author|, "/>
+        <cell95 column="1" row="16" text="|author|, "/>
+        <cell96 column="1" row="17" text="|author|, "/>
+        <cell97 column="1" row="18" text="|author|, "/>
+        <cell98 column="1" row="19" text="|author|, "/>
+        <cell99 column="1" row="20" text="|author|, "/>
+        <cell100 column="1" row="21" text="|author|, "/>
+        <cell101 column="1" row="22" text="|author|, "/>
+        <cell102 column="1" row="23" text="|author|, "/>
+        <cell103 column="1" row="24" text="|author|, "/>
+        <cell104 column="1" row="25" text="|author|, "/>
+        <cell105 column="1" row="26" text="|author|, "/>
+        <cell106 column="1" row="27" text="|author|, "/>
+        <cell107 column="1" row="28" text="|author|, "/>
+        <cell108 column="1" row="29" text="|author|, "/>
+        <cell109 column="1" row="30" text="|author|, "/>
+        <cell110 column="1" row="31" text="|author|, "/>
+        <cell111 column="1" row="32" text="|author|, "/>
+        <cell112 column="1" row="33" text="|author|, "/>
+        <cell113 column="1" row="34" text="|author|, "/>
+        <cell114 column="1" row="35" text="|author|, "/>
+        <cell115 column="1" row="36" text="|author|, "/>
+        <cell116 column="1" row="37" text="|author|, "/>
+        <cell117 column="1" row="38" text="|author|, "/>
+        <cell118 column="1" row="39" text="\textsc{|author|}, "/>
+        <cell119 column="1" row="40" text="\textsc{|author|}, "/>
+        <cell120 column="1" row="41" text="\textsc{|author|}, "/>
+        <cell121 column="1" row="42" text="|author|, "/>
+        <cell122 column="1" row="43" text="|author|, "/>
+        <cell123 column="1" row="44" text="|author|, "/>
+        <cell124 column="1" row="45" text="|author|, "/>
+        <cell125 column="1" row="46" text="|author|, "/>
+        <cell126 column="1" row="47" text="|author|, "/>
+        <cell127 column="1" row="48" text="|author|, "/>
+        <cell128 column="1" row="49" text="|author|, "/>
+        <cell129 column="1" row="50" text="|author|, "/>
+        <cell130 column="1" row="51" text="|author|, "/>
+        <cell131 column="1" row="52" text="|author|, "/>
+        <cell132 column="1" row="53" text="|author|, "/>
+        <cell133 column="1" row="54" text="|author|, "/>
+        <cell134 column="1" row="55" text="|author|, "/>
+        <cell135 column="1" row="56" text="|author|, "/>
+        <cell136 column="1" row="57" text="|author|, "/>
+        <cell137 column="1" row="58" text="|author|, "/>
+        <cell138 column="1" row="59" text="|author|, "/>
+        <cell139 column="1" row="60" text="|author|, "/>
+        <cell140 column="1" row="61" text="|author|, "/>
+        <cell141 column="1" row="62" text="|author|, "/>
+        <cell142 column="1" row="63" text="|author|, "/>
+        <cell143 column="1" row="64" text="|author|, "/>
+        <cell144 column="1" row="65" text="|author|, "/>
+        <cell145 column="1" row="66" text="|author|, "/>
+        <cell146 column="1" row="67" text="|author|, "/>
+        <cell147 column="1" row="68" text="|author|, "/>
+        <cell148 column="1" row="69" text="|author|, "/>
+        <cell149 column="1" row="70" text="|author|, "/>
+        <cell150 column="1" row="71" text="|author|, "/>
+        <cell151 column="1" row="72" text="|author|, "/>
+        <cell152 column="1" row="73" text="|author|, "/>
+        <cell153 column="1" row="74" text="|author|, "/>
+        <cell154 column="1" row="75" text="|author|, "/>
+        <cell155 column="1" row="76" text="|author|, "/>
+        <cell156 column="1" row="77" text="|author|, "/>
+        <cell157 column="2" row="0" text="«|title|»"/>
+        <cell158 column="2" row="1" text="«|title|»"/>
+        <cell159 column="2" row="2" text="«|title|»"/>
+        <cell160 column="2" row="3" text="\emph{|title|}"/>
+        <cell161 column="2" row="4" text="\emph{|title|}"/>
+        <cell162 column="2" row="5" text="\emph{|title|}"/>
+        <cell163 column="2" row="6" text="\emph{|title|} "/>
+        <cell164 column="2" row="7" text="\emph{|title|}"/>
+        <cell165 column="2" row="8" text="\emph{|title|}"/>
+        <cell166 column="2" row="9" text="«|title|»"/>
+        <cell167 column="2" row="10" text="«|title|»"/>
+        <cell168 column="2" row="11" text="«|title|»"/>
+        <cell169 column="2" row="12" text="\emph{|title|} "/>
+        <cell170 column="2" row="13" text="\emph{|title|}"/>
+        <cell171 column="2" row="14" text="\emph{|title|}"/>
+        <cell172 column="2" row="15" text="\emph{|title|} "/>
+        <cell173 column="2" row="16" text="\emph{|title|}"/>
+        <cell174 column="2" row="17" text="\emph{|title|}"/>
+        <cell175 column="2" row="18" text="\emph{|title|} "/>
+        <cell176 column="2" row="19" text="\emph{|title|}"/>
+        <cell177 column="2" row="20" text="\emph{|title|}"/>
+        <cell178 column="2" row="21" text="\emph{|title|} "/>
+        <cell179 column="2" row="22" text="\emph{|title|}"/>
+        <cell180 column="2" row="23" text="\emph{|title|} "/>
+        <cell181 column="2" row="24" text="\emph{|title|}"/>
+        <cell182 column="2" row="25" text="\emph{|title|} "/>
+        <cell183 column="2" row="26" text="\emph{|title|}"/>
+        <cell184 column="2" row="27" text="\emph{|title|} "/>
+        <cell185 column="2" row="28" text="\emph{|title|}"/>
+        <cell186 column="2" row="29" text="\emph{|title|} "/>
+        <cell187 column="2" row="30" text="\emph{|title|}"/>
+        <cell188 column="2" row="31" text="\emph{|title|}"/>
+        <cell189 column="2" row="32" text="\emph{|title|} "/>
+        <cell190 column="2" row="33" text="\emph{|title|} "/>
+        <cell191 column="2" row="34" text="\emph{|title|}"/>
+        <cell192 column="2" row="35" text="\emph{|title|} "/>
+        <cell193 column="2" row="36" text="\emph{|title|}"/>
+        <cell194 column="2" row="37" text="\emph{|title|} "/>
+        <cell195 column="2" row="38" text="\emph{|title|}"/>
+        <cell196 column="2" row="39" text="\emph{|title|}"/>
+        <cell197 column="2" row="40" text="\emph{|title|}"/>
+        <cell198 column="2" row="41" text="\emph{|title|}"/>
+        <cell199 column="2" row="42" text="\emph{|title|}"/>
+        <cell200 column="2" row="43" text="\emph{|title|} "/>
+        <cell201 column="2" row="44" text="\emph{|title|}"/>
+        <cell202 column="2" row="45" text="\emph{|title|} "/>
+        <cell203 column="2" row="46" text="\emph{|title|} "/>
+        <cell204 column="2" row="47" text="\emph{|title|}"/>
+        <cell205 column="2" row="48" text="\emph{|title|} "/>
+        <cell206 column="2" row="49" text="\emph{|title|}"/>
+        <cell207 column="2" row="50" text="\emph{|title|} "/>
+        <cell208 column="2" row="51" text="\emph{|title|}"/>
+        <cell209 column="2" row="52" text="\emph{|title|}"/>
+        <cell210 column="2" row="53" text="\emph{|title|}"/>
+        <cell211 column="2" row="54" text="\emph{|title|} "/>
+        <cell212 column="2" row="55" text="\emph{|title|}"/>
+        <cell213 column="2" row="56" text="\emph{|title|} "/>
+        <cell214 column="2" row="57" text="\emph{|title|}"/>
+        <cell215 column="2" row="58" text="\emph{|title|} "/>
+        <cell216 column="2" row="59" text="\emph{|title|}"/>
+        <cell217 column="2" row="60" text="\emph{|title|}"/>
+        <cell218 column="2" row="61" text="\emph{|title|}"/>
+        <cell219 column="2" row="62" text="\emph{|title|}"/>
+        <cell220 column="2" row="63" text="\emph{|title|}"/>
+        <cell221 column="2" row="64" text="\emph{|title|}"/>
+        <cell222 column="2" row="65" text="\emph{|title|}"/>
+        <cell223 column="2" row="66" text="\emph{|title|}"/>
+        <cell224 column="2" row="67" text="\emph{|title|}"/>
+        <cell225 column="2" row="68" text="\emph{|title|}"/>
+        <cell226 column="2" row="69" text="\emph{|title|}"/>
+        <cell227 column="2" row="70" text="\emph{|title|}"/>
+        <cell228 column="2" row="71" text="\emph{|title|}"/>
+        <cell229 column="2" row="72" text="\emph{|title|}"/>
+        <cell230 column="2" row="73" text="\emph{|title|}"/>
+        <cell231 column="2" row="74" text="\emph{|title|}"/>
+        <cell232 column="2" row="75" text="\emph{|title|}"/>
+        <cell233 column="2" row="76" text="\emph{|title|}"/>
+        <cell234 column="2" row="77" text="\emph{|title|}"/>
+        <cell235 column="3" row="0" text=", in \emph{|journaltitle|}"/>
+        <cell236 column="3" row="1" text=", |pages|"/>
+        <cell237 column="3" row="2" text=", in \emph{|journaltitle|}"/>
+        <cell238 column="3" row="3" text=", a cura di |editor|"/>
+        <cell239 column="3" row="5" text=", a cura di |editor|"/>
+        <cell240 column="3" row="9" text=", in "/>
+        <cell241 column="3" row="11" text=", in "/>
+        <cell242 column="3" row="39" text=", a cura di |editor|"/>
+        <cell243 column="3" row="41" text=", a cura di |editor|"/>
+        <cell244 column="4" row="0" text=" |volume|"/>
+        <cell245 column="4" row="2" text=" |volume|"/>
+        <cell246 column="4" row="3" text=", |publisher|"/>
+        <cell247 column="4" row="5" text=", |publisher|"/>
+        <cell248 column="4" row="9" text="\textsc{|bookauthor|}, "/>
+        <cell249 column="4" row="11" text="\textsc{|bookauthor|}, "/>
+        <cell250 column="4" row="39" text=", in |Url|"/>
+        <cell251 column="4" row="41" text=", in |Url|"/>
+        <cell252 column="5" row="0" text=" (|year|)"/>
+        <cell253 column="5" row="2" text=" (|year|)"/>
+        <cell254 column="5" row="3" text=", |location|"/>
+        <cell255 column="5" row="5" text=", |location|"/>
+        <cell256 column="5" row="9" text="\emph{|booktitle|}"/>
+        <cell257 column="5" row="11" text="\emph{|booktitle|}"/>
+        <cell258 column="6" row="0" text=" |number|"/>
+        <cell259 column="6" row="2" text=" |number|"/>
+        <cell260 column="6" row="3" text=" |year|"/>
+        <cell261 column="6" row="5" text=" |year|"/>
+        <cell262 column="6" row="9" text=", a cura di |editor|"/>
+        <cell263 column="6" row="11" text=", a cura di |editor|"/>
+        <cell264 column="7" row="0" text=", |pages|"/>
+        <cell265 column="7" row="2" text=", |pages|"/>
+        <cell266 column="7" row="9" text=", |publisher|"/>
+        <cell267 column="7" row="11" text=", |publisher|"/>
+        <cell268 column="8" row="9" text=", |location|"/>
+        <cell269 column="8" row="11" text=", |location|"/>
+        <cell270 column="9" row="9" text=" |year|"/>
+        <cell271 column="9" row="11" text=" |year|"/>
+        <cell272 column="10" row="9" text=", |pages|"/>
+        <cell273 column="10" row="11" text=", |pages|"/>
+      </cells>
+    </content>
+  </grid>
+</CONFIG>

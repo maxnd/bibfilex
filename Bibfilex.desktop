@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Bibfilex
+Comment=A free software to manage bibliography in Biblatex format.
+Exec=env LIBOVERLAY_SCROLLBAR=0 /opt/bibfilex/bibfilex
+Terminal=false
+Type=Application
+Icon=bibfilex
+Categories=Office;
+GenericName=Bibfilex
